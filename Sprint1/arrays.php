@@ -44,22 +44,20 @@ echo 'Exercici 3'.PHP_EOL;
 
 // Si tenim [“hola”, “Php”, “Html”] retornarà true si preguntem per “h” però fals si preguntem per “l”.
 
-function isRepeated($X, $character){
+function isRepeated(array $X, string $character): bool {
   
-  $result = array_filter($X, fn($element) => strpos($element, $character));
+  $result = array_filter($X, fn($element) => strpos($element, $character) !== false);
 
   if(count($result) === count($X)){
     echo 'Retorna true';
     return true;
-    
   } else {
     echo 'Retorna fals';
     return false;
-    
   };
 };
 
-isRepeated($X = array ('diez', 'veinte', 'treinta', 'cuarenta'), 'i');
+isRepeated($X = array ('hola', 'php', 'html'), 'l');
 
 echo $separacion;
 echo 'Exercici 4'.PHP_EOL;
@@ -82,7 +80,7 @@ echo 'Exercici 1'.PHP_EOL;
 // La intersecció dels dos arrays (nombres en comú)
 // La mescla dels dos arrays.
 
-function twoArrays(){
+function twoArrays():void{
   $firstArray = [1, 4, 4.5, 6, 8.8, 9, 15.15];
   $secondArray = [0.8, 1, 3, 4.5, 5, 6.8, 25, 515];
 
@@ -107,7 +105,7 @@ echo 'Exercici 2'.PHP_EOL;
 // A més, crea una funció que, donades les notes de tots els/les alumnes, ens mostri tant la mitjana de la nota de cada alumne, com la nota mitjana de la classe sencera.
 $notes = array("Alex" => [6,6,7,6,6], "Bernat" => [8,8,8,8,8], "Carles" => [1,8,2,9,5], "David" => [1,2,3,2,1]);
 
-function printNotes($arrayNotes){
+function printNotes(array $arrayNotes):void{
   print_r($arrayNotes);
 };
 
@@ -116,7 +114,7 @@ printNotes($notes);
 $sumaTotal = 0;
 $quantityNotes = 0;
 
-function medians($arrayNotes){
+function medians(array $arrayNotes): float{
   global $sumaTotal;
   global $quantityNotes;
   $suma = array_sum($arrayNotes); 
@@ -127,7 +125,7 @@ function medians($arrayNotes){
   return $suma / $cantidad; 
 };
 
-function mitjanes($notes){
+function mitjanes(array $notes):void{
   global $sumaTotal;
   global $quantityNotes;
   foreach ($notes as $alumno => $notasAlumno) {
@@ -138,5 +136,27 @@ function mitjanes($notes){
 }
 
 mitjanes($notes);
+
+echo PHP_EOL.'Nivell 3'.PHP_EOL;
+echo 'Exercici 1'.PHP_EOL;
+
+// Donat un array d’enters, fes un programa que:
+
+// Retorni cada valor de l’array elevat al cub fent servir la funció array_map().
+
+$integersArray = [1,2,3,4,5];
+
+function cubedArray(array $integersCubed): array {
+  $result = array_map(function($numb):int {
+    return $numb * $numb * $numb;
+  },$integersCubed);
+  print_r($result);
+  return $result;
+};
+
+cubedArray($integersArray);
+
+echo 'Exercici 2'.PHP_EOL;
+
 
 ?>
