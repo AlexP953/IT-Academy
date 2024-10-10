@@ -74,7 +74,7 @@ class DicesCounter {
   private static $externalCounter = 'counter.txt';
   public static $throws = 0;
 
-  public static function load() {
+  public static function load():void {
     // si counter.txt existe, pilla su informacion, si no, lo crea y setea en 0
     if (file_exists(self::$externalCounter)) {
         self::$throws = (int) file_get_contents(self::$externalCounter);
@@ -83,13 +83,13 @@ class DicesCounter {
     }
 }
 
-  public static function addOneThrow() {
+  public static function addOneThrow():void {
     // suma +1 al contador y lo añade la info al txt
     self::$throws +=1;
     file_put_contents(self::$externalCounter, self::$throws);
   }
 
-  public static function showThrow() {
+  public static function showThrow():int{
     return self::$throws;
   }
 }
@@ -112,7 +112,7 @@ class PokerDice {
     return $this->diceFaces[$this->throw()];
   }
 
-  public function throwFiveDices(){
+  public function throwFiveDices():void{
     $fiveDices = [];
     for ($i=0; $i < 5; $i++) { 
     $fiveDices = $this->shapeName();
@@ -120,7 +120,7 @@ class PokerDice {
     }
   }
 
-  public function getTotalThrows(){
+  public function getTotalThrows():string{
      return DicesCounter::showThrow();
   }
 }
