@@ -1,6 +1,5 @@
 {
     "require": {
-        "json-mapper/json-mapper": "^2.22",
         "guzzlehttp/guzzle": "^7.9"
     }
 }
