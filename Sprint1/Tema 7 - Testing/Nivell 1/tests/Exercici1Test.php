@@ -15,11 +15,27 @@ class Exercici1Test extends TestCase
         $this->assertEquals(true, $result);
     }
 
+    public function testIsntEven():void
+    {
+        $checker = new NumberChecker(3);
+        $result = $checker->isEven();
+        
+        $this->assertEquals(false, $result);
+    }
+
     public function testIsPositive():void
     {
         $checker = new NumberChecker(45);
         $result = $checker->isPositive();
         
         $this->assertEquals(true, $result);
+    }
+
+    public function testIsntPositive():void
+    {
+        $checker = new NumberChecker(-45);
+        $result = $checker->isPositive();
+        
+        $this->assertEquals(false, $result);
     }
 }
