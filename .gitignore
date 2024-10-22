@@ -1,5 +1,5 @@
 .vscode
 desktop.ini
-Sprint1/Tema 7 - Testing/.phpunit.result.cache
+*.phpunit.result.cache
 *.lock
 vendor/
