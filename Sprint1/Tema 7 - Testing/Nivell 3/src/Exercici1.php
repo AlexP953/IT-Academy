@@ -41,7 +41,7 @@ class Book
     return $this->Isbn;
   }
 
-  public function getGenre(): genre{
+  public function getGenre(){
     return $this->genre;
   }
 
@@ -81,7 +81,7 @@ class Catalog {
         
         case 'Genre':
           //instanceof verifica si lo que le estoy pasando coincide con alguno de los enum de Genre.
-          return $goal instanceof Genre ? $book->getGenre()->name === $goal->name : false;
+          return $goal instanceof Genre ? $book->getGenre()->name == $goal->name : false;
           
         case 'Isbn':
           return $book->getIsbn() === $goal;
@@ -93,7 +93,9 @@ class Catalog {
       }
     });
 
-  return $filteredBooks[0];    
+    // array_values reindexa los elementos del array. Sin esto provocaba un error al devolver el elemento [0] ya que a veces devolvia el elemento [1] y eso devolvia null
+    $filteredBooks = array_values($filteredBooks);
+    return $filteredBooks[0] ?? null;    
   }
 
   public function getLargeBooks() {
@@ -104,18 +106,3 @@ class Catalog {
     return array_values($filteredBooks);
 }
 }
-
-// Necessitem crear un petit software per a tractament d’informació en una biblioteca. Per això necessitem representar la informació d’un llibre, que té:
-
-//   Un títol
-//   Un autor/autora
-//   Un ISBN
-//   Un gènere, que pot ser: Aventures, Ciència-ficció, Conte, Novel·la Policial, Paranormal, Distopia, Fantàstic.
-//   núm. de pàgines.
-
-//   Necessitem emmagatzemar el conjunt de llibres i tenir mètodes que:
-  
-//   Afegeixin, esborrin i modifiquin un llibre de la llibreria.
-//   Permetin consultar llibres per títol, gènere, ISBN o autor.
-//   Retornar llibres grans (més de 500 pàgines).
-//   Desenvolupa mitjançant TDD aquest programa per tal de garantir que compleix totes les funcionalitats demanades per l’enunciat.
