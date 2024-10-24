@@ -16,6 +16,7 @@ class Exercici1Test extends TestCase
     private Book $book1;
     private Book $book2;
 
+    // setUp() se ejecuta ANTES de cada prueba. Con esto estoy haciendo que en cada prueba, antes de nada, se creen dos objetos de tipo Book y uno de tupo Catalog con el que hare las pruebas unitarias siguientes
     protected function setUp(): void
     {
         $this->book1 = new Book('Gilmour', 'Seymour', '43534534534', genre::Aventures, 245);
