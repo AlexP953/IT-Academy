@@ -5,7 +5,7 @@ require './src/Exercici1.php';
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Library\Book;
-use Library\genre;
+use Library\Genre;
 use Library\Catalog;
 
 
@@ -19,8 +19,8 @@ class Exercici1Test extends TestCase
     // setUp() se ejecuta ANTES de cada prueba. Con esto estoy haciendo que en cada prueba, antes de nada, se creen dos objetos de tipo Book y uno de tupo Catalog con el que hare las pruebas unitarias siguientes
     protected function setUp(): void
     {
-        $this->book1 = new Book('Gilmour', 'Seymour', '43534534534', genre::Aventures, 245);
-        $this->book2 = new Book('Two Moons', 'Satoshi', '324342343243', genre::Distopia, 4590);
+        $this->book1 = new Book('Gilmour', 'Seymour', '43534534534', Genre::Aventures, 245);
+        $this->book2 = new Book('Two Moons', 'Satoshi', '324342343243', Genre::Distopia, 4590);
         $this->catalog = new Catalog();
     }
     
@@ -30,7 +30,7 @@ class Exercici1Test extends TestCase
         $this->assertEquals('Gilmour', $this->book1->getTitle());
         $this->assertEquals('Seymour', $this->book1->getAuthor());
         $this->assertEquals('43534534534', $this->book1->getIsbn());
-        $this->assertEquals(genre::Aventures, $this->book1->getGenre());
+        $this->assertEquals(Genre::Aventures, $this->book1->getGenre());
         $this->assertEquals(245, $this->book1->getPages());
     }
 

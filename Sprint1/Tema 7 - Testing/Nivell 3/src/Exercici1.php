@@ -2,7 +2,7 @@
 
 namespace Library;
 
-enum genre {
+enum Genre {
   case Aventures;
   case Ciència_ficció;
   case Conte;
@@ -18,7 +18,7 @@ class Book
     public string $title, 
     public string $author, 
     public string $Isbn, 
-    public genre $genre, 
+    public Genre $genre, 
     public int $bookLength)
     
     {
@@ -45,7 +45,7 @@ class Book
     return $this->genre;
   }
 
-  public function getPages(): string{
+  public function getPages(): int{
     return $this->bookLength;
   }
 }
