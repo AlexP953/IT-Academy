@@ -111,17 +111,20 @@ SELECT fabricante.nombre, producto.nombre FROM fabricante LEFT JOIN producto ON 
 SELECT producto.nombre, fabricante.nombre AS fabricante FROM producto RIGHT JOIN fabricante ON producto.codigo_fabricante = fabricante.cod
 igo WHERE fabricante.nombre = 'Lenovo';
 
--- Retorna totes les dades dels productes que tenen el mateix preu que el producte més car del fabricant Lenovo. (Sense fer servir INNER JOIN).
+-- 37
+SELECT producto.nombre, producto.precio, fabricante.nombre AS fabricante FROM producto JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE producto.precio = ( SELECT MAX(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo'));
 
 -- 38
 SELECT producto.nombre, producto.precio, fabricante.nombre AS fabricante FROM producto JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre = 'Lenovo' ORDER BY producto.precio DESC LIMIT 1;
 
--- Llista el nom del producte més barat del fabricant Hewlett-Packard.
+-- 39
+SELECT producto.nombre, producto.precio, fabricante.nombre AS fabricante FROM producto JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE fabricante.nombre = 'Hewlett-Packard' ORDER BY producto.precio ASC LIMIT 1;
 
--- Retorna tots els productes de la base de dades que tenen un preu major o igual al producte més car del fabricant Lenovo.
+-- 40
+SELECT producto.nombre, producto.precio, fabricante.nombre AS fabricante FROM producto JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE producto.precio > ( SELECT MAX(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo'));
 
--- Llesta tots els productes del fabricant Asus que tenen un preu superior al preu mitjà de tots els seus productes.
-
+-- 41
+SELECT producto.nombre, producto.precio, fabricante.nombre AS fabricante FROM producto JOIN fabricante ON producto.codigo_fabricante = fabricante.codigo WHERE producto.precio > ( SELECT AVG(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Asus'));
 
 -------------------------------------
 -- Base de dades "Universidad"
