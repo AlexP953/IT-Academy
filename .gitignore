@@ -3,3 +3,4 @@ desktop.ini
 *.phpunit.result.cache
 *.lock
 vendor/
+*.idea
