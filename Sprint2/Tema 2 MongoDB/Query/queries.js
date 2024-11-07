@@ -50,15 +50,21 @@ db.restaurant.find({ "name": {"$regex": "Reg"}},{"restaurant_id": 1, "name": 1, 
 // #17 Escriu una consulta per trobar els restaurants que pertanyen al Bronx i preparen plats Americans o xinesos.
 db.restaurant.find({"borough": "Bronx",  "cuisine": { "$in": ["American ", "Chinese"] }});
 
-
 // #18 Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per aquells restaurants que pertanyen a Staten Island, Queens, Bronx o Brooklyn.
-db.restaurant.find({},);
+db.restaurant.find({ "borough": {"$in":["Staten Island", "Queens", "Bronx","Brooklyn"]}},{"restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1});
+
 // #19 Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que NO pertanyen a Staten Island, Queens, Bronx o Brooklyn.
-db.restaurant.find({},);
+db.restaurant.find({ "borough": {"$nin":["Staten Island", "Queens", "Bronx","Brooklyn"]}},{"restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1});
+
 // #20 Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que aconsegueixin una nota menor que 10.
-db.restaurant.find({},);
+db.restaurant.find({ "grades.score": {"$lt":10 }},{"restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1});
+
 // #21 Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que preparen marisc ('seafood') excepte si són 'American ', 'Chinese' o el name del restaurant comença amb lletres 'Wil'.
-db.restaurant.find({},);
+db.restaurant.find({"name": { "$not": /^Wil/ }, "cuisine": "Seafood","cuisine": { "$nin": ['American ', 'Chinese'] } },{"restaurant_id": 1, "name": 1, "borough": 1, "cuisine":1});
+
+// ------------
+
+
 // #22 Escriu una consulta per trobar el restaurant_id, name i grades per a aquells restaurants que aconsegueixin un grade de "A" i un score d'11 amb un ISODate "2014-08-11T00:00:00Z".
 db.restaurant.find({},);
 // #23 Escriu una consulta per trobar el restaurant_id, name i grades per a aquells restaurants on el 2n element de l'array de graus conté un grade de "A" i un score 9 amb un ISODate "2014-08-11T00:00:00Z".
@@ -67,6 +73,8 @@ db.restaurant.find({},);
 db.restaurant.find({},);
 // #25 Escriu una consulta per organitzar els restaurants per nom en ordre ascendent.
 db.restaurant.find({},);
+
+
 // #26 Escriu una consulta per organitzar els restaurants per nom en ordre descendent.
 db.restaurant.find({},);
 // #27 Escriu una consulta per organitzar els restaurants pel nom de la cuisine en ordre ascendent i pel barri en ordre descendent.
