@@ -1,0 +1,70 @@
+{
+  "id":0,
+  "shop_name":"",
+  "address":"",
+  "zip_code":"",
+  "country":"",
+  "provincia":"",
+  "empleados": [
+    {
+      "id":0,
+      "name":"",
+      "surname":"",
+      "NIF":"",
+      "phone":"",
+      "type": "cocinero"
+    },
+    {
+      "id":1,
+      "name":"",
+      "surname":"",
+      "NIF":"",
+      "phone":"",
+      "type": "repartidor"
+    }
+  ],
+  "orders": [
+    {
+      "id":0,
+      "order_date":"",
+      "type": "delivery",
+      "note":"",
+      "price":0,
+      "delivery_by": {
+        "id": 1,
+        "name": "",
+        "surname": "",
+        "delivery_date":""
+      },
+      "client":{
+        "id":0,
+        "name":"",
+        "surname":"",
+        "address":"",
+        "zip_code":"",
+        "country":"",
+        "localidad":"",
+        "phone":""
+      },
+      "order":[
+        {
+          "id":0,
+          "type":"pizza",
+          "category":"",
+          "name":"",
+          "description":"",
+          "img":"",
+          "price":0
+        },
+        {
+          "id":0,
+          "type":"hamburguesa",
+          "name":"",
+          "description":"",
+          "img":"",
+          "price":0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id":0,
+  "name":"",
+  "surname":"",
+  "address":"",
+  "phone":"",
+  "email":"",
+  "register_date":"",
+  "recommended_by":{
+    "id":0,
+    "name":"",
+    "surname":""
+  },
+  "orders": [
+    {
+      "id":0,
+      "brand":"",
+      "mount":"",
+      "color_mount":"",
+      "graduation_l":0,
+      "graduation_r":0,
+      "color_l":"",
+      "color_r":"",
+      "price":0,
+      "seller":"",
+      "supplier": 
+        {
+          "id":"",
+          "name":"",
+          "phone":"",
+          "fax":"",
+          "NIF":"",
+          "address": {
+            "street":"",
+            "number":0,
+            "floor":"",
+            "door":"",
+            "city":"",
+            "zip_code":0,
+            "country":""
+          }
+        }
+    }
+  ]
+}
