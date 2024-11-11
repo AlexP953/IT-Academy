@@ -46,8 +46,8 @@ class Plantilla {
   ];
 
   function totalKMAverage(){
-    $totalKMs = array_reduce($this->plantilla, function($carry, $player) {
-      return $carry + $player['mediaKMP'];
+    $totalKMs = array_reduce($this->plantilla, function($sum, $player) {
+      return $sum + $player['mediaKMP'];
     }, 0);
 
     $average = $totalKMs / count($this->plantilla);
