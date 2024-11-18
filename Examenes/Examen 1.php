@@ -15,59 +15,63 @@
 
 
 class Plantilla {
+  public array $partidos;
+  public int $fueraDeJuego;
+  public array $players;
 
-  public $partidos = array("victorias" => 4, "empate" => 1, "derrotas" => 0);
-  public $fueraDeJuego = 47;
-  public $plantilla = [
-    [
-      "name"=> "Raphinha",
-      "edad"=> 23,
-      "altura"=> 1.76,
-      "mediaKMP"=> 45
-    ],
-    [
-      "name"=> "Leao",
-      "edad"=> 29,
-      "altura"=> 1.96,
-      "mediaKMP"=> 40
-    ],
-    [
-      "name"=> "Ter Stegen",
-      "edad"=> 31,
-      "altura"=> 1.90,
-      "mediaKMP"=> 1
-    ],
-    [
-      "name"=> "Lamine Yamal",
-      "edad"=> 17,
-      "altura"=> 1.86,
-      "mediaKMP"=> 35
-    ]
-  ];
+  public function __construct(array $partidos, int $fueraDeJuego, array $players)
+  {
+    $this->partidos = $partidos;
+    $this->fueraDeJuego = $fueraDeJuego;
+    $this->players = $players;
+  }
 
   function totalKMAverage(){
-    $totalKMs = array_reduce($this->plantilla, function($sum, $player) {
-      return $sum + $player['mediaKMP'];
+    $totalKMs = array_reduce($this->players, function($sum, $player) {
+      return $sum + $player->averageKM;
     }, 0);
 
-    $average = $totalKMs / count($this->plantilla);
+    $average = $totalKMs / count($this->players);
     return $average;
   }
 
   function youngerPlayer(){
-    $youngPlayer = min(array_column($this->plantilla, 'edad'));
-    $youngerPlayer = array_filter($this->plantilla, function($jugador) use ($youngPlayer) {
-        return $jugador['edad'] === $youngPlayer;
+    $youngPlayer = min(array_map(function($player) {
+      return $player->age; 
+    }, $this->players));
+    $youngerPlayer = array_filter($this->players, function($player) use ($youngPlayer) {
+      return $player->age === $youngPlayer; 
     });
-    print_r($youngerPlayer);
-    
+    return $youngerPlayer;    
   }
 
 }
 
+class Player {
+  public string $name;
+  public int $age;
+  public float $height;
+  public float $averageKM;
 
-$barca = new Plantilla();
+  public function __construct(string $name, int $age, float $height, float $averageKM)
+  {
+    $this->name = $name;
+    $this->age = $age;
+    $this->height = $height;
+    $this->averageKM = $averageKM;
+  }
+}
+
+$Raph = new Player('Raphinha', 26, 1.76, 78.06);
+$Stegen = new Player('Stegen', 32, 1.98, 1.06);
+$Lamine = new Player('Lamine', 17, 1.72, 34.06);
+$Casado = new Player('Casado', 21, 1.87, 95.06);
+
+$jugadores = [$Raph,$Stegen,$Lamine,$Casado];
+$partidos = array("victorias" => 4, "empate" => 1, "derrotas" => 0);
+
+$barca = new Plantilla($partidos, 48, $jugadores);
 echo $barca->totalKMAverage();
-echo $barca->youngerPlayer();
+print_r($barca->youngerPlayer());
 
 ?>
