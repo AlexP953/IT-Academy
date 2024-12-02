@@ -43,8 +43,9 @@ CREATE TABLE producto (
 
 CREATE TABLE pizza (
   id INT NOT NULL PRIMARY KEY,
-  nombre VARCHAR(50) NOT NULL,
+  producto_id INT NOT NULL,
   categoria_id INT NOT NULL,
+  CONSTRAINT pizza_producto_id_fk FOREIGN KEY (producto_id) REFERENCES producto (id),
   CONSTRAINT pizza_categoria_id_fk FOREIGN KEY (categoria_id) REFERENCES categoria (id)
 );
 
@@ -105,10 +106,10 @@ INSERT INTO producto (id, tipo_producto, nombre, descripcion, img, precio) VALUE
 (4, 'hamburguesa', 'Hamburguesa Clásica', 'Hamburguesa con carne de res, lechuga y tomate', 'img_hamburguesa.jpg', 7.0),
 (5, 'bebida', 'Coca-Cola', 'Refresco de cola', 'img_cocacola.jpg', 2.0);
 
-INSERT INTO pizza (id, nombre, categoria_id) VALUES
-(1, 'Pizza Margarita', 1),
-(2, 'Pizza Pepperoni', 2),
-(3, 'Pizza BBQ', 3);
+INSERT INTO pizza (id, producto_id, categoria_id) VALUES
+(1, 1, 1),  
+(2, 2, 2),  
+(3, 3, 3);
 
 INSERT INTO pedido (id, cliente_id, fecha, tipo, precio, repartidor_nif, fecha_entrega, tienda_id) VALUES
 (1, 1, '2024-11-01 12:30:00', 'domicilio', 27.0, '87654321B', '2024-11-01 13:00:00', 1),
