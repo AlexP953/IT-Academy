@@ -5,12 +5,11 @@ function calculateDiscount($type, $amount){
   return $amount - ($amount * $types[$type]);
 }
 
-function allDiscounts($discounts, $prices){
-  for ($i = 0; $i < count($discounts); $i++) {
-    echo calculateDiscount($discounts[$i], $prices[$i]) . PHP_EOL;
-  }
+function allDiscounts($calcs){
+  foreach ($calcs as $type => $price) {
+    echo calculateDiscount($type, $price) . PHP_EOL;
+}
 }
 
-$discounts = ['regular', 'premium', 'vip', 'other'];
-$prices = [1000, 2000, 3000, 500];
-allDiscounts($discounts, $prices);
+$calcs = ['regular'=>1000, 'premium'=>2000, 'vip'=>3000,'other'=>500];
+allDiscounts($calcs);
