@@ -1,15 +1,19 @@
 <?php
 
 function setTree(){
-  $numero = (int)readline('Introdueix un numero enter: ') + 2; 
+    $altura = (int)readline('Introdueix un numero enter: ');
+    $nivel = 1;
+    $anchuraBase = $altura === 1 ? $altura * 2 + 1 : ($altura - 1) * 2 + 1;
 
-  for ($i = 1; $i <= $numero; $i++) {
-    if ($i % 2 == 0) {
-        continue; // Pasa
-    }
-    echo  str_repeat(" ", $numero - $i) . str_repeat("* ", $i).PHP_EOL;
-}
-echo str_repeat(" ", $numero -2) . "|||";
+    for ($i = 0; $i < $altura; $i++) {
+      $espacios = ($anchuraBase - $nivel) / 2;
+      echo str_repeat(" ", $espacios) . str_repeat("*", $nivel) . PHP_EOL;
+      $nivel += 2; 
+  }
+
+  $espaciosTronco = ($anchuraBase - 3) / 2; 
+  echo str_repeat(" ", $espaciosTronco) . "|||" . PHP_EOL;
+
 }
 
 echo setTree();
